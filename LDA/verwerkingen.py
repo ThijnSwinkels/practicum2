@@ -14,18 +14,17 @@ def interferentieafstand(gl, hkn):
     return teller / noemer
 
 
-def afstand(hoek, lengte, afstand):
+def afstand(hoek, afstand):
     """Berekend de positie in een buis met water.
     Args:
         hoek (float): De hoek gemeten in lucht.
-        lengte (float): De lengte van de buis tot de lens
         afstand (float): De afstand tot het midden van de buis in lucht.
 
     Returns:
         float: De positie ten opzichte van het midden van de buis
     """
     hoekinwater = np.sin(hoek) / 1.33
-    plek = lengte + afstand
+    plek = 1.5 - afstand
     T = plek * np.tan(hoek)
     N = np.tan(hoekinwater)
     return (T / N) + 1.5
@@ -79,7 +78,7 @@ df_00_1 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df_00_1["positie"] = 0
+df_00_1["positie"] = afstand(hoek_1, 0)
 df_00_1["snelheid"] = d_1 * df_00_1["frequentie"]
 df_00_1["sigma_freq"] = df_00_1["fwhm"] / sigma_noemer
 df_00_1["sigma"] = d_1 * df_00_1["sigma_freq"]
@@ -96,7 +95,7 @@ df_25_1 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df_25_1["positie"] = -2.5
+df_25_1["positie"] = afstand(hoek_1, 2.5)
 df_25_1["snelheid"] = d_1 * df_25_1["frequentie"]
 df_25_1["sigma_freq"] = df_25_1["fwhm"] / sigma_noemer
 df_25_1["sigma"] = d_1 * df_25_1["sigma_freq"]
@@ -115,7 +114,7 @@ df_50_1 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df_50_1["positie"] = -5.0
+df_50_1["positie"] = afstand(hoek_1, -5)
 df_50_1["snelheid"] = d_1 * df_50_1["frequentie"]
 df_50_1["sigma_freq"] = df_50_1["fwhm"] / sigma_noemer
 df_50_1["sigma"] = d_1 * df_50_1["sigma_freq"]
@@ -132,7 +131,7 @@ df__25_1 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df__25_1["positie"] = 2.5
+df__25_1["positie"] = afstand(hoek_1, 2.5)
 df__25_1["snelheid"] = d_1 * df__25_1["frequentie"]
 df__25_1["sigma_freq"] = df__25_1["fwhm"] / sigma_noemer
 df__25_1["sigma"] = d_1 * df__25_1["sigma_freq"]
@@ -164,7 +163,7 @@ df_00_2 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df_00_2["positie"] = 0
+df_00_2["positie"] = afstand(hoek_2, 0)
 df_00_2["snelheid"] = d_2 * df_00_2["frequentie"]
 df_00_2["sigma_freq"] = df_00_2["fwhm"] / sigma_noemer
 df_00_2["sigma"] = d_1 * df_00_2["sigma_freq"]
@@ -184,7 +183,7 @@ df__50_2 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df__50_2["positie"] = 5.0
+df__50_2["positie"] = afstand(hoek_2, 5)
 df__50_2["snelheid"] = d_2 * df__50_2["frequentie"]
 df__50_2["sigma_freq"] = df__50_2["fwhm"] / sigma_noemer
 df__50_2["sigma"] = d_1 * df__50_2["sigma_freq"]
@@ -203,7 +202,7 @@ df__60_2 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df__60_2["positie"] = 6.0
+df__60_2["positie"] = afstand(hoek_2, 6)
 df__60_2["snelheid"] = d_2 * df__60_2["frequentie"]
 df__60_2["sigma_freq"] = df__60_2["fwhm"] / sigma_noemer
 df__60_2["sigma"] = d_1 * df__60_2["sigma_freq"]
@@ -220,7 +219,7 @@ df__25_2_1 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df__25_2_1["positie"] = 2.5
+df__25_2_1["positie"] = afstand(hoek_2, 2.5)
 df__25_2_1["snelheid"] = d_2 * df__25_2_1["frequentie"]
 df__25_2_1["sigma_freq"] = df__25_2_1["fwhm"] / sigma_noemer
 df__25_2_1["sigma"] = d_1 * df__25_2_1["sigma_freq"]
@@ -239,7 +238,7 @@ df__25_2_2 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df__25_2_2["positie"] = 2.5
+df__25_2_2["positie"] = afstand(hoek_2, 2.5)
 df__25_2_2["snelheid"] = d_2 * df__25_2_2["frequentie"]
 df__25_2_2["sigma_freq"] = df__25_2_2["fwhm"] / sigma_noemer
 df__25_2_2["sigma"] = d_1 * df__25_2_2["sigma_freq"]
@@ -258,7 +257,7 @@ df_25_2 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df_25_2["positie"] = -2.5
+df_25_2["positie"] = afstand(hoek_2, -2.5)
 df_25_2["snelheid"] = d_2 * df_25_2["frequentie"]
 df_25_2["sigma_freq"] = df_25_2["fwhm"] / sigma_noemer
 df_25_2["sigma"] = d_1 * df_25_2["sigma_freq"]
@@ -275,7 +274,7 @@ df_50_2 = pd.DataFrame(
     ],
     columns=["frequentie", "fwhm"],
 )
-df_50_2["positie"] = -2.5
+df_50_2["positie"] = afstand(hoek_2, -5)
 df_50_2["snelheid"] = d_2 * df_50_2["frequentie"]
 df_50_2["sigma_freq"] = df_50_2["fwhm"] / sigma_noemer
 df_50_2["sigma"] = d_1 * df_50_2["sigma_freq"]
@@ -299,27 +298,27 @@ err__60 = np.sqrt((std__60_2) ** 2 + (sig__60_2) ** 2)
 # print(err)
 
 # # verwerking:
-# figure, axes = plt.subplots(1, 2, figsize=(20, 6))
-# df_00_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
-# df_25_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
-# df_50_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
-# df__25_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
-# df_00_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
-# df_50_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
-# df_25_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
-# df__60_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
-# df__50_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
-# df__25_2_1.plot.scatter("positie", "snelheid", yerr="sigma", c="r", ax=axes[0])
-# df__25_2_2.plot.scatter(
-#     "positie",
-#     "snelheid",
-#     yerr="sigma",
-#     c="deepskyblue",
-#     ax=axes[0],
-#     title=("(x-v) diagram, met alle losse metingen."),
-# )
-# axes[0].set_xlabel("positie (mm)")
-# axes[0].set_ylabel("snelheid (m/s)")
+figure, axes = plt.subplots(1, 2, figsize=(20, 6))
+df_00_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
+df_25_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
+df_50_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
+df__25_1.plot.scatter("positie", "snelheid", yerr="sigma", c="navy", ax=axes[0])
+df_00_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
+df_50_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
+df_25_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
+df__60_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
+df__50_2.plot.scatter("positie", "snelheid", yerr="sigma", c="deepskyblue", ax=axes[0])
+df__25_2_1.plot.scatter("positie", "snelheid", yerr="sigma", c="r", ax=axes[0])
+df__25_2_2.plot.scatter(
+    "positie",
+    "snelheid",
+    yerr="sigma",
+    c="deepskyblue",
+    ax=axes[0],
+    title=("(x-v) diagram, met alle losse metingen."),
+)
+axes[0].set_xlabel("positie (mm)")
+axes[0].set_ylabel("snelheid (m/s)")
 
 
 # plt.subplot(1, 3, 2)
@@ -338,26 +337,25 @@ err__60 = np.sqrt((std__60_2) ** 2 + (sig__60_2) ** 2)
 # plt.ylabel("snelheid (m/s)")
 # plt.title("(x-v) diagram, met gecombineerde datasets.")
 
-# plt.subplot(1, 2, 2)
-# plt.errorbar(0, mean_00, yerr=err_00_2, fmt="o", c="magenta")
-# plt.errorbar(2.5, mean__25, yerr=err__25_2_2, fmt="o", c="magenta")
-# plt.errorbar(-2.5, mean_25, yerr=err_25_2, fmt="o", c="magenta")
-# plt.errorbar(-5.0, mean_50, yerr=err_50_2, fmt="o", c="magenta")
-# plt.errorbar(6.0, mean__60_2, yerr=err__60_2, fmt="o", c="magenta")
-# plt.errorbar(5.0, mean__50_2, yerr=err__50_2, fmt="o", c="magenta")
-# plt.xlabel("positie (mm)")
-# plt.ylabel("snelheid (m/s)")
-# plt.title("(x-v) diagram, met gecombineerde metingen.")
-# plt.savefig("nsp2_metingen.png")
+plt.subplot(2, 1, 2)
+plt.errorbar(0, mean_00, yerr=sig_00_2, fmt="o", c="magenta")
+plt.errorbar(2.5, mean__25, yerr=sig__25_2_2, fmt="o", c="magenta")
+plt.errorbar(-2.5, mean_25, yerr=sig_25_2, fmt="o", c="magenta")
+plt.errorbar(-5.0, mean_50, yerr=sig_50_2, fmt="o", c="magenta")
+plt.errorbar(6.0, mean__60_2, yerr=sig__60_2, fmt="o", c="magenta")
+plt.errorbar(5.0, mean__50_2, yerr=sig__50_2, fmt="o", c="magenta")
+plt.xlabel("positie (mm)")
+plt.ylabel("snelheid (m/s)")
+plt.title("(x-v) diagram, met gecombineerde metingen.")
+plt.savefig("nsp2_metingen.png")
 
 
 yen = [mean_50, mean_25, mean_00, mean__25, mean__50_2, mean__60_2]
 xen = [-5.0, -2.5, 0, 2.5, 5.0, 6.0]
 
-
 f = lambda x, a, b, x0: a + b * (x - x0) ** 2
-mod_snelheid = models.Model(f, name="parabool")
+mod_snelheid = models.Model(f, name="snelheidsprofiel")
 fit = mod_snelheid.fit(yen, x=xen, a=1, b=1, x0=1)
 fit.plot(numpoints=50, xlabel="positie (mm)", ylabel="snelheid (m / s)")
-plt.savefig("nsp2_fit.png")
+plt.show("nsp2_fit.png")
 print(fit.fit_report())
