@@ -25,10 +25,12 @@ df_X_orientatie = pd.DataFrame(
 
 MAXVERSTAPPEN = []
 loca = []
+N = []
 
 for O in np.arange(2.5, 8, 0.5):
     dfO = pd.read_csv(f"metingen_pet/spectrum_{O}.csv")
     a = dfO["counts_ch_B"]
+    N.append(len(np.sqrt(a)))
     top_4_idx = np.argsort(a)[-4:]
     MAXVERSTAPPEN.append(np.mean([a[i] for i in top_4_idx]))
     loca.append(O)
@@ -37,6 +39,7 @@ for O in np.arange(2.5, 8, 0.5):
 for P in np.arange(8, 15.5, 0.5):
     dfP = pd.read_csv(f"metingen_pet/spectrum_{P}.csv")
     a = dfP["counts_ch_B"]
+    N.append(len(np.sqrt(a)))
     top_4_idx = np.argsort(a)[-4:]
     MAXVERSTAPPEN.append(np.mean([a[i] for i in top_4_idx]))
     loca.append(P)
@@ -45,37 +48,56 @@ for P in np.arange(8, 15.5, 0.5):
 for Q in np.arange(25, 29.5, 0.5):
     dfQ = pd.read_csv(f"metingen_pet/spectrum_{Q}.csv")
     a = dfQ["counts_ch_B"]
+    N.append(len(np.sqrt(a)))
     top_4_idx = np.argsort(a)[-4:]
     MAXVERSTAPPEN.append(np.mean([a[i] for i in top_4_idx]))
     loca.append(Q)
 
 df = pd.DataFrame(MAXVERSTAPPEN, loca)
 print(df)
-plt.plot(loca, MAXVERSTAPPEN)
-plt.show()
+# plt.errorbar(loca, MAXVERSTAPPEN, xerr=2.75, yerr=None)
+# plt.show()
 
 MAXVERSTAPPENR = []
 locaR = []
+NR = []
 for R in range(0, 12):
     dfR = pd.read_csv(f"metingen_pet_30/spectrum_30.{R}.csv")
     a = dfR["counts_ch_B"]
+    NR.append(len(np.sqrt(a)))
     top_4_idx = np.argsort(a)[-4:]
     MAXVERSTAPPENR.append(np.mean([a[i] for i in top_4_idx]))
     locaR.append(R)
 dfR = pd.DataFrame(MAXVERSTAPPENR, locaR)
 print(dfR)
-plt.plot(locaR, MAXVERSTAPPENR)
-plt.show()
+# plt.errorbar(locaR, MAXVERSTAPPENR, xerr=2.75, yerr=None)
+# plt.show()
 
 MAXVERSTAPPENS = []
 locaS = []
-for S in range(0, 20):
+NS = []
+for S in range(0, 23):
     dfS = pd.read_csv(f"metingen_pet_50/spectrum_50.{S}.csv")
     a = dfS["counts_ch_B"]
+    NS.append(len(np.sqrt(a)))
     top_4_idx = np.argsort(a)[-4:]
     MAXVERSTAPPENS.append(np.mean([a[i] for i in top_4_idx]))
     locaS.append(S)
 dfS = pd.DataFrame(MAXVERSTAPPENS, locaS)
 print(dfS)
-plt.plot(locaS, MAXVERSTAPPENS)
+# plt.errorbar(locaS, MAXVERSTAPPENS, xerr=2.75, yerr=None)
+# plt.show()
+
+MAXVERSTAPPENT = []
+locaT = []
+NT = []
+for T in np.arange(0, 21.25, 1.25):
+    dfT = pd.read_csv(f"metingen_pet_vert/spectrum_ver_{T}.csv")
+    a = dfT["counts_ch_B"]
+    top_4_idx = np.argsort(a)[-4:]
+    MAXVERSTAPPENT.append(np.mean([a[i] for i in top_4_idx]))
+    locaT.append(T)
+dfT = pd.DataFrame(MAXVERSTAPPENT, locaT)
+print(dfT)
+plt.errorbar(locaT, MAXVERSTAPPENT, xerr=np.sqrt(2.25), yerr=None)
 plt.show()
