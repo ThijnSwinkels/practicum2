@@ -118,10 +118,10 @@ yht = []
 xhterr = []
 yhterr = []
 for waarde in np.arange(0, 19.5, 0.5):
-    xht_1.append(5.5)
-    xht_2.append(11.0)
-    xht_3.append(12.0)
-    xht_4.append(27.0)
+    xht_1.append(28 - 5.5)
+    xht_2.append(28 - 11.0)
+    xht_3.append(28 - 12.0)
+    xht_4.append(28 - 27.0)
     yht.append(waarde)
     xhterr.append(0.3)
     yhterr.append(1.25)
@@ -131,7 +131,7 @@ x30err = []
 y30 = []
 y30err = []
 for waarde in np.arange(23, 29.5, 0.5):
-    x30.append(waarde)
+    x30.append(28 - waarde)
     x30err.append(0.5)
     y30.append(np.tan(0.6) * (waarde - 23))
     y30err.append(1.25)
@@ -141,7 +141,7 @@ x50_1err = []
 y50_1 = []
 y50_1err = []
 for waarde in np.arange(0, 15.5, 0.5):
-    x50_1.append(waarde)
+    x50_1.append(28 - waarde)
     x50_1err.append(0.5)
     y50_1.append(np.tan(0.82) * (15 - waarde))
     y50_1err.append(1.25)
@@ -151,7 +151,7 @@ x50_2err = []
 y50_2 = []
 y50_2err = []
 for waarde in np.arange(0, 27.5, 0.5):
-    x50_2.append(waarde)
+    x50_2.append(28 - waarde)
     x50_2err.append(0.5)
     y50_2.append(np.tan(0.82) * (27 - waarde))
     y50_2err.append(1.25)
@@ -206,7 +206,7 @@ plt.xlim(0, 29)
 plt.xlabel("X, (cm)")
 plt.ylim(0, 19)
 plt.ylabel("Y, (cm)")
-plt.savefig("patient.png")
+plt.savefig("patient_1.png")
 
 plt.plot(
     xht_1,
