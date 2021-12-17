@@ -23,6 +23,7 @@ df_X_orientatie = pd.DataFrame(
 )
 # print(df_X_orientatie)
 
+# horizontaal
 MAXVERSTAPPEN = []
 loca = []
 N = []
@@ -55,9 +56,11 @@ for Q in np.arange(25, 29.5, 0.5):
 
 df = pd.DataFrame(MAXVERSTAPPEN, loca)
 print(df)
-# plt.errorbar(loca, MAXVERSTAPPEN, xerr=2.75, yerr=None)
-# plt.show()
+plt.plot(loca, MAXVERSTAPPEN, "r.")
+plt.errorbar(loca, MAXVERSTAPPEN, fmt="r--", xerr=(0.3), yerr=1.25, ecolor="k")
+plt.show()
 
+# 30 graden
 MAXVERSTAPPENR = []
 locaR = []
 NR = []
@@ -70,9 +73,11 @@ for R in range(0, 12):
     locaR.append(R)
 dfR = pd.DataFrame(MAXVERSTAPPENR, locaR)
 print(dfR)
-# plt.errorbar(locaR, MAXVERSTAPPENR, xerr=2.75, yerr=None)
-# plt.show()
+plt.plot(locaR, MAXVERSTAPPENR, "r.")
+plt.errorbar(locaR, MAXVERSTAPPENR, fmt="r--", xerr=0.5, yerr=1.25, ecolor="k")
+plt.show()
 
+# 50 graden!
 MAXVERSTAPPENS = []
 locaS = []
 NS = []
@@ -85,9 +90,11 @@ for S in range(0, 23):
     locaS.append(S)
 dfS = pd.DataFrame(MAXVERSTAPPENS, locaS)
 print(dfS)
-# plt.errorbar(locaS, MAXVERSTAPPENS, xerr=2.75, yerr=None)
-# plt.show()
+plt.plot(locaS, MAXVERSTAPPENS, "r.")
+plt.errorbar(locaS, MAXVERSTAPPENS, fmt="r--", xerr=0.5, yerr=1.25, ecolor="k")
+plt.show()
 
+# verticaal
 MAXVERSTAPPENT = []
 locaT = []
 NT = []
@@ -99,5 +106,145 @@ for T in np.arange(0, 21.25, 1.25):
     locaT.append(T)
 dfT = pd.DataFrame(MAXVERSTAPPENT, locaT)
 print(dfT)
-plt.errorbar(locaT, MAXVERSTAPPENT, xerr=np.sqrt(2.25), yerr=None)
+plt.plot(locaT, MAXVERSTAPPENT, "r.")
+plt.errorbar(locaT, MAXVERSTAPPENT, fmt="r--", xerr=0.75, yerr=1.25, ecolor="k")
 plt.show()
+
+xht_1 = []
+xht_2 = []
+xht_3 = []
+xht_4 = []
+yht = []
+xhterr = []
+yhterr = []
+for waarde in np.arange(0, 19.5, 0.5):
+    xht_1.append(5.5)
+    xht_2.append(11.0)
+    xht_3.append(12.0)
+    xht_4.append(27.0)
+    yht.append(waarde)
+    xhterr.append(0.3)
+    yhterr.append(1.25)
+
+x30 = []
+x30err = []
+y30 = []
+y30err = []
+for waarde in np.arange(23, 29.5, 0.5):
+    x30.append(waarde)
+    x30err.append(0.5)
+    y30.append(np.tan(0.6) * (waarde - 23))
+    y30err.append(1.25)
+
+x50_1 = []
+x50_1err = []
+y50_1 = []
+y50_1err = []
+for waarde in np.arange(0, 15.5, 0.5):
+    x50_1.append(waarde)
+    x50_1err.append(0.5)
+    y50_1.append(np.tan(0.82) * (15 - waarde))
+    y50_1err.append(1.25)
+
+x50_2 = []
+x50_2err = []
+y50_2 = []
+y50_2err = []
+for waarde in np.arange(0, 27.5, 0.5):
+    x50_2.append(waarde)
+    x50_2err.append(0.5)
+    y50_2.append(np.tan(0.82) * (27 - waarde))
+    y50_2err.append(1.25)
+
+yvc_1 = []
+yvc_2 = []
+yvc_3 = []
+yvc_4 = []
+xvc = []
+yvcerr = []
+xvcerr = []
+for waarde in np.arange(0, 29.5, 0.5):
+    yvc_1.append(3.75)
+    yvc_2.append(10.0)
+    yvc_3.append(12.50)
+    yvc_4.append(18.75)
+    yvcerr.append(0.75)
+    xvc.append(waarde)
+    xvcerr.append(1.25)
+
+
+plt.plot(
+    xht_1,
+    yht,
+    "k",
+    xht_2,
+    yht,
+    "k",
+    xht_4,
+    yht,
+    "k",
+    x30,
+    y30,
+    "k",
+    x50_1,
+    y50_1,
+    "k",
+    x50_2,
+    y50_2,
+    "k",
+    xvc,
+    yvc_1,
+    "k",
+    xvc,
+    yvc_4,
+    "k",
+    xvc,
+    yvc_3,
+    "k",
+)
+plt.xlim(0, 29)
+plt.xlabel("X, (cm)")
+plt.ylim(0, 19)
+plt.ylabel("Y, (cm)")
+plt.savefig("patient.png")
+
+plt.plot(
+    xht_1,
+    yht,
+    "k",
+    xht_2,
+    yht,
+    "k",
+    xht_3,
+    yht,
+    "k",
+    xht_4,
+    yht,
+    "k",
+    x30,
+    y30,
+    "k",
+    x50_1,
+    y50_1,
+    "k",
+    x50_2,
+    y50_2,
+    "k",
+    xvc,
+    yvc_1,
+    "k",
+    xvc,
+    yvc_2,
+    "k",
+    xvc,
+    yvc_3,
+    "k",
+    xvc,
+    yvc_4,
+    "k",
+)
+plt.xlim(0, 29)
+plt.xlabel("X, (cm)")
+plt.ylim(0, 19)
+plt.ylabel("Y, (cm)")
+plt.savefig("patient_2.png")
